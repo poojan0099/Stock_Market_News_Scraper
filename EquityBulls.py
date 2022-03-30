@@ -7,7 +7,7 @@ url = "https://www.equitybulls.com/"
 news = requests.get(url)
 doc = BeautifulSoup(news.text, "html.parser")
 
-headings = list()
+headings = []
 for updates in doc.find_all("div", attrs={"class": "media-body"}):
     headings.append(updates.text)
 
@@ -15,7 +15,7 @@ for updates in doc.find_all("div", attrs={"class": "media-body"}):
 
 # links = doc.find("div", attrs={"class": "media-body"})
 
-click_link = list()
+click_link = []
 
 for l in doc.find_all(class_="catg_title", href=True):
     l_ck = l.get('href')

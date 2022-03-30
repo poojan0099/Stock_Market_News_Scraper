@@ -1,23 +1,25 @@
 from bs4 import BeautifulSoup
 import requests
-import re
 
 url = "https://www.livemint.com/market/stock-market-news"
 
 news = requests.get(url)
 doc = BeautifulSoup(news.text, "html.parser")
 
-headings_links_html = doc.select(".headline")
-print(headings_links_html)
+headings = []
 
-headings = [updates.text.strip() for updates in headings_links_html]
+for updates in doc.find_all("h2", class_="headline"):
+    headings.append(updates.text.strip())
 
 print(headings)
 
-click_link = list()
-for l in doc.find_all("h2", attrs={"class": "headline"}, href=True):
-    if l.get('href').endswith('html'):
-        click_link.append(l.get('href'))
+get_href = lambda element: "https://www.livemint.com" + element["href"]
+click_link = list(map(get_href, doc.select("h2.headline>a", href=True)))
 
+print("Links:", click_link)
 
-print(click_link)
+print("Number of hreadings", len(headings))
+print("Number of links", len(click_link))
+
+headings_links = dict(zip(headings, click_link))
+print(headings_links)

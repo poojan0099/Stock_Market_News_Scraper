@@ -15,7 +15,7 @@ news = requests.get(url)
 doc = BeautifulSoup(news.text, "html.parser")
 
 
-headings = list()
+headings = []
 for updates in doc.find_all("h2", attrs={"class": "fw500 fs20e blue_text"}):    # GET ALL HEADINGS IN TEXT STORED IN LIST
    headings.append(updates.text)
 
@@ -23,7 +23,7 @@ for updates in doc.find_all("h2", attrs={"class": "fw500 fs20e blue_text"}):    
 
 links = doc.find("div", attrs={"class": "story_card h_auto"})   # GET ALL STORY CARDS (UPDATES) FROM THE PAGE
 
-click_link = list()
+click_link = []
 for l in links.find_all('a', attrs={'href': re.compile("^https://")}):  # EXTRACT LINKS FROM THE STORY CARDS
     if l.get('href').endswith('html'):
         click_link.append(l.get('href'))
