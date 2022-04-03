@@ -1,9 +1,10 @@
 from bs4 import BeautifulSoup
 import requests
 
-url = "https://www.livemint.com/market/stock-market-news"
+
+url = "https://www.equitybulls.com/"
 
 news = requests.get(url)
 doc = BeautifulSoup(news.text, "html.parser")
 
-headings = doc.find()
+print(news)
