@@ -1,5 +1,42 @@
-{% extends "index.html" %}
-{% block title%}HOME PAGE{% endblock %}
-{% block content %}
-<p>This is the content block inside body</p>
-{% endblock %}
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<form action="/base" method="POST">
+			<!-- query -->
+			<div class="mb-3">
+				<div class="row">
+					<div class="col-2">
+						<label for="query">query</label>
+					</div>
+					<div class="col-10">
+						<input
+							class="form-control"
+							name="query"
+							type="text"
+							placeholder="query like tcs"
+							aria-label="query"
+						/>
+					</div>
+				</div>
+			</div>
+			<!-- submit button -->
+			<div class="mb-3">
+				<button type="submit" class="btn btn-outline-success">
+					Generate
+				</button>
+			</div>
+		</form>
+		<iframe
+			src="../static/candlestick_chart.html"
+			frameborder="0"
+			width="800px"
+			height="400px"
+		></iframe>
+		<p>This is the content block inside body</p>
+	</body>
+</html>
